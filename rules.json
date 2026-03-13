@@ -1,0 +1,322 @@
+{
+  "meta": {
+    "name": "AEON 表記チェック（初期ルール入り）",
+    "version": "0.5",
+    "sources": [
+      "統一用語集.pdf（苦情→お申出）",
+      "●【日本語】イオングループ未来ビジョン表記ルール.pdf（句読点・全角スペース等）",
+      "【グループ企業用】ブランドガイドライン.pdf（基本理念文言）"
+    ],
+    "note": "rules を追加して運用します。 / 0.5: 置換の重複（お支払→お支払い等）を安全に扱うための補助ルールを追加。"
+  },
+  "rules": [
+    {
+      "id": "contact_1",
+      "type": "replace",
+      "severity": "error",
+      "ng": "お問合せ",
+      "ok": "お問い合わせ",
+      "message": "「お問合せ」は使用せず「お問い合わせ」に統一してください。"
+    },
+    {
+      "id": "contact_2",
+      "type": "replace",
+      "severity": "error",
+      "ng": "お問い合せ",
+      "ok": "お問い合わせ",
+      "message": "「お問い合せ」は使用せず「お問い合わせ」に統一してください。"
+    },
+    {
+      "id": "customer_1",
+      "type": "replace",
+      "severity": "error",
+      "ng": "お客様",
+      "ok": "お客さま",
+      "message": "対外表記では「お客様」ではなく「お客さま」に統一してください。"
+    },
+    {
+      "id": "glossary_complaint_to_offer",
+      "type": "replace",
+      "severity": "warn",
+      "ng": "苦情",
+      "ok": "お申出",
+      "message": "対外表記では原則として「苦情」とは言わず、「お申出」を共通用語として使用します。"
+    },
+    {
+      "id": "brand_aeon_basic_principle_phrase_notice",
+      "type": "pattern",
+      "severity": "warn",
+      "pattern": "お客さまを原点に平和を追求し、人間を尊重し、地域社会に貢献する",
+      "message": "ブランドガイドライン内で「イオンの基本理念」として掲載されている定型表現です（定款にも記載との注記あり）。"
+    },
+    {
+      "id": "brand_customer_origin_fix",
+      "type": "replace",
+      "severity": "error",
+      "ng": "お客様を原点に",
+      "ok": "お客さまを原点に",
+      "message": "ブランドガイドラインの基本理念表現は「お客さまを原点に」です。"
+    },
+    {
+      "id": "brand_customer_first_fix",
+      "type": "replace",
+      "severity": "error",
+      "ng": "お客様を第一に",
+      "ok": "お客さまを第一に",
+      "message": "ブランドガイドラインでは「お客さまを第一にする」という趣旨が記載されています。"
+    },
+    {
+      "id": "vision_stmt_no_punct",
+      "type": "compound",
+      "severity": "error",
+      "ifAll": [
+        {
+          "type": "pattern",
+          "pattern": "一人ひとりの笑顔が咲く"
+        },
+        {
+          "type": "regex",
+          "regex": "[、。]"
+        }
+      ],
+      "message": "未来ビジョンのビジョンステートメントは句読点を付けられません。"
+    },
+    {
+      "id": "vision_stmt_space_1line",
+      "type": "regex",
+      "severity": "warn",
+      "regex": "一人ひとりの笑顔が咲く未来のくらしを創造する",
+      "message": "1行verで表記する際は、“咲く”と“未来”の間に全角スペースが必要です。（例：咲く 未来）"
+    },
+    {
+      "id": "assert_zen",
+      "type": "pattern",
+      "severity": "warn",
+      "pattern": "全店",
+      "message": "「全店」表記は誤認を招く可能性があります。対象範囲を確認してください。"
+    },
+    {
+      "id": "assert_must",
+      "type": "pattern",
+      "severity": "warn",
+      "pattern": "必ず",
+      "message": "「必ず」は断定表現です。条件付き表現への修正を検討してください。"
+    },
+    {
+      "id": "notation",
+      "type": "replace",
+      "severity": "error",
+      "ng": "致し",
+      "ok": "いたし",
+      "message": "「致し」は使用せず、ひらがなの「いたし」に統一してください。"
+    },
+    {
+      "id": "notation_2",
+      "type": "replace",
+      "severity": "error",
+      "ng": "下さい",
+      "ok": "ください",
+      "message": "「下さい」は使用せず、ひらがなの「ください」に統一してください。"
+    },
+    {
+      "id": "notation_3",
+      "type": "replace",
+      "severity": "error",
+      "ng": "aeon",
+      "ok": "AEON",
+      "message": "「AEON」の表記は必ず大文字です。"
+    },
+    {
+      "id": "notation_4",
+      "type": "replace",
+      "severity": "error",
+      "ng": "Aeon",
+      "ok": "AEON",
+      "message": "「AEON」の表記は必ず大文字です。"
+    },
+    {
+      "id": "notation_5",
+      "type": "replace",
+      "severity": "error",
+      "ng": "トップバリュー",
+      "ok": "トップバリュ",
+      "message": "「トップバリュ」に「ー」は不要です。"
+    },
+    {
+      "id": "notation_6",
+      "type": "replace",
+      "severity": "error",
+      "ng": "マックスバリュー",
+      "ok": "マックスバリュ",
+      "message": "「マックスバリュ」に「ー」は不要です。"
+    },
+    {
+      "id": "notation_7",
+      "type": "replace",
+      "severity": "error",
+      "ng": "AEON PAY",
+      "ok": "AEON Pay",
+      "message": "「Pay」はP以外小文字です。"
+    },
+    {
+      "id": "notation_8",
+      "type": "replace",
+      "severity": "error",
+      "ng": "Waon Point",
+      "ok": "WAON POINT",
+      "message": "「WAON POINT」はすべて大文字です。"
+    },
+    {
+      "id": "notation_9",
+      "type": "replace",
+      "severity": "error",
+      "ng": "waon point",
+      "ok": "WAON POINT",
+      "message": "「WAON POINT」はすべて大文字です。"
+    },
+    {
+      "id": "notation_10",
+      "type": "replace",
+      "severity": "error",
+      "ng": "QRコード",
+      "ok": "二次元コード",
+      "message": "「QRコード」は商標登録されているため利用は控えましょう。"
+    },
+    {
+      "id": "notation_11",
+      "type": "replace",
+      "severity": "error",
+      "ng": "税込み",
+      "ok": "税込",
+      "message": "送り仮名は基本不要です。文脈を見て必要な場合は記載して問題ありません。"
+    },
+    {
+      "id": "notation_12",
+      "type": "replace",
+      "severity": "error",
+      "ng": "税抜き",
+      "ok": "税抜",
+      "message": "送り仮名は基本不要です。文脈を見て必要な場合は記載して問題ありません。"
+    },
+    {
+      "id": "notation_13",
+      "type": "replace",
+      "severity": "error",
+      "ng": "お問合わせ",
+      "ok": "お問い合わせ",
+      "message": "「お問い合わせ」は使用せず「お問い合わせ」に統一してください。"
+    },
+    {
+      "id": "notation_14",
+      "type": "replace",
+      "severity": "error",
+      "ng": "お申し込み",
+      "ok": "お申込み",
+      "message": "「お申し込み」は使用せず「お申込み」に統一してください。"
+    },
+    {
+      "id": "notation_15",
+      "type": "replace",
+      "severity": "error",
+      "ng": "見積もり",
+      "ok": "見積り",
+      "message": "「も」は不要です。送り仮名をなくした「見積」でも問題ありません。文脈に応じて判断してください。"
+    },
+    {
+      "id": "pay_oshiharai",
+      "type": "replace",
+      "severity": "error",
+      "ngRegex": "お支払(?!い)",
+      "ok": "お支払い",
+      "message": "「お支払」は「お支払い」に統一してください。（※「お支払い」は正しいため置換しません）"
+    },
+    {
+      "id": "notation_16",
+      "type": "replace",
+      "severity": "error",
+      "ng": "受け渡し",
+      "ok": "受渡し",
+      "message": "「受渡し」に統一してください。"
+    },
+    {
+      "id": "notation_17",
+      "type": "replace",
+      "severity": "error",
+      "ng": "お買い物",
+      "ok": "お買物",
+      "message": "「お買物」に統一してください。"
+    },
+    {
+      "id": "notation_18",
+      "type": "replace",
+      "severity": "error",
+      "ng": "代引",
+      "ok": "代引き",
+      "message": "「代引き」に統一してください。"
+    },
+    {
+      "id": "notation_19",
+      "type": "replace",
+      "severity": "error",
+      "ng": "配達",
+      "ok": "配送",
+      "message": "イオンがお客さま先に商品を届ける際、基本的には全行程を表す「配送」が正しいですが文脈によって「配達」が正しい場合もあるので注意してください。"
+    },
+    {
+      "id": "notation_20",
+      "type": "replace",
+      "severity": "error",
+      "ng": "宅配",
+      "ok": "配送",
+      "message": "イオンがお客さま先に商品を届ける際、基本的には全行程を表す「配送」が正しいですが文脈によって「宅配」が正しい場合もあるので注意してください。"
+    },
+    {
+      "id": "notation_21",
+      "type": "replace",
+      "severity": "error",
+      "ng": "お得",
+      "ok": "おトク",
+      "message": "基本的には「おトク」ですが文脈などによって「お得」でも問題ありません。"
+    },
+    {
+      "id": "notation_22",
+      "type": "replace",
+      "severity": "error",
+      "ng": "是非",
+      "ok": "ぜひ",
+      "message": "「ぜひ」はひらがなで表記してください。"
+    },
+    {
+      "id": "notation_23",
+      "type": "replace",
+      "severity": "error",
+      "ng": "全て",
+      "ok": "すべて",
+      "message": "「すべて」はひらがなで表記してください。"
+    },
+    {
+      "id": "notation_24",
+      "type": "replace",
+      "severity": "error",
+      "ng": "検索ワード",
+      "ok": "キーワード",
+      "message": "「キーワード」で統一してください。"
+    },
+    {
+      "id": "notation_25",
+      "type": "replace",
+      "severity": "error",
+      "ng": "買い物かご",
+      "ok": "カート",
+      "message": "「カート」で統一してください。"
+    },
+    {
+      "id": "notation_18_dedupe",
+      "type": "replace",
+      "severity": "warn",
+      "ng": "代引きき",
+      "ok": "代引き",
+      "message": "表記の重複（代引きき）がある場合は「代引き」に修正してください。"
+    }
+  ]
+}

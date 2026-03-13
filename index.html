@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>文言チェック（辞書ベース）</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <main class="container">
+    <header class="header">
+      <h1>お知らせ／ポップ 文言チェック</h1>
+      <div class="meta" id="metaLine">ルール読込中…</div>
+      <p class="desc">
+        文言を入力すると、登録された表記ルール（NG→推奨）でチェックします。<br>
+        <span class="muted">※本ツールはセルフチェック用です。最終判断は担当部門で行ってください。</span>
+      </p>
+    </header>
+
+    <section class="panel">
+      <label class="label" for="textInput">チェックしたい文章</label>
+      <textarea id="textInput" placeholder="ここに文章を貼り付けてください"></textarea>
+
+      <div class="row">
+        <button id="checkBtn" class="btn primary">チェックする</button>
+        <button id="clearBtn" class="btn secondary">クリア</button>
+        <span class="status" id="status"></span>
+      </div>
+    </section>
+
+    <section id="resultArea"></section>
+
+    <section class="panel preview">
+      <div class="row between">
+        <div>
+          <div class="label">推奨表記に直した文章（プレビュー）</div>
+          <div class="muted">※replace ルール（NG→推奨）を自動適用した結果です</div>
+        </div>
+        <button id="copyBtn" class="btn secondary" type="button">修正後をコピー</button>
+      </div>
+      <textarea id="fixedOutput" readonly placeholder="ここに修正後の文章が表示されます"></textarea>
+    </section>
+
+    <footer class="footer">
+      <details>
+        <summary>ルール（rules.json）の追加方法</summary>
+        <p class="muted">
+          <code>rules.json</code> の <code>rules</code> 配列にルールを追加します。<br>
+          例：<code>{"type":"replace","ng":"お客様","ok":"お客さま","severity":"error"}</code>
+        </p>
+      </details>
+    </footer>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
